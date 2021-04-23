@@ -50,9 +50,15 @@ RSpec.describe Key do
 
       expect(key.d_shift).to be_an_instance_of(Integer)
     end
+
+    it 'starts with no phrase' do
+      key = Key.new('040895')
+
+      expect(key.phrase).to eq(nil)
+    end
   end
 
-  describe 'shift' do
+  describe '#shift' do
     it 'creates consecutive pairs of randomly generated number' do
       key = Key.new('040895')
 
@@ -65,6 +71,16 @@ RSpec.describe Key do
       key = Key.new('040895')
 
       expect(key.date_transformation).to eq(1025)
+    end
+  end
+
+  describe '#take_in_phrase' do
+    it 'takes in a phrase' do
+      key = Key.new
+
+      key.take_in_phrase('We gotta give Han more time')
+
+      expect(key.phrase).to eq('we gotta give han more time')
     end
   end
 end
