@@ -8,5 +8,11 @@ RSpec.describe Key do
 
       expect(key).is_a?(Key)
     end
+
+    it 'has a range from a-z plus a space' do
+      key = Key.new
+
+      expect(key.library.length).to eq(27)
+    end
   end
 end
