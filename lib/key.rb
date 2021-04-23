@@ -5,7 +5,8 @@ class Key
               :b_shift,
               :c_shift,
               :d_shift,
-              :date
+              :date,
+              :phrase
 
   def initialize(date)
     @date = date
@@ -15,6 +16,7 @@ class Key
     @b_shift = shift[1].sum + date_transformation[1]
     @c_shift = shift[2].sum + date_transformation[2]
     @d_shift = shift[3].sum + date_transformation[3]
+    @phrase = nil
   end
 
   def random_number_generator
@@ -32,5 +34,9 @@ class Key
   def date_transformation
     new = @date.to_i ** 2
     new.to_s[-4..-1].to_i
+  end
+
+  def take_in_phrase(phrase)
+    @phrase = phrase.downcase
   end
 end
