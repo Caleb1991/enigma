@@ -76,7 +76,7 @@ RSpec.describe Key do
 
   describe '#take_in_phrase' do
     it 'takes in a phrase' do
-      key = Key.new
+      key = Key.new('040895')
 
       key.take_in_phrase('We gotta give Han more time')
 
