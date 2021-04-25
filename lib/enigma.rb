@@ -1,10 +1,16 @@
 class Enigma
-  attr_reader :encrypted
+  attr_reader :encrypted,
+              :encoded_phrase,
+              :date,
+              :key,
+              :decoded_phrase
 
   def initialize
     @date = nil
     @key = nil
+    @key_and_date = nil
     @encoded_phrase = nil
+    @decoded_phrase = nil
     @phrase = nil
     @character_set = ('a'..'z').to_a << ' '
   end
@@ -29,7 +35,6 @@ class Enigma
     @key = key
     @date = date
     @phrase = phrase.downcase
-    # downcase_phrase = phrase.downcase
     @encoded_phrase = encoded_string
 
     encrypted = {
@@ -43,9 +48,10 @@ class Enigma
     @phrase = phrase.downcase
     @key = key
     @date = date
+    @decoded_phrase = decoded_string
 
     decryption = {
-      decryption: decoded_string,
+      decryption: @decoded_phrase,
       key: @key,
       date: @date
     }
