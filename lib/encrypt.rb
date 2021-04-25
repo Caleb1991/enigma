@@ -1,5 +1,4 @@
 require './enigma'
-# require './encode'
 
 enigma = Enigma.new
 
