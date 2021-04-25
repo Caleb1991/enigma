@@ -1,5 +1,4 @@
 require './lib/enigma'
-# require './lib/key'
 require 'SimpleCOV'
 
 RSpec.describe Enigma do
@@ -7,7 +6,7 @@ RSpec.describe Enigma do
   describe 'initialize' do
     it 'exists' do
       enigma = Enigma.new
-
+      require 'pry'; binding.pry
       expect(enigma).is_a?(Enigma)
     end
   end
@@ -181,7 +180,7 @@ RSpec.describe Enigma do
   describe '#create_range' do
     it 'creates a range from 0 to 9' do
       enigma = Enigma.new
-      
+
       expect(enigma.create_range.length).to eq(10)
     end
   end
