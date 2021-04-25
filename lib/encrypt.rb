@@ -1,10 +1,11 @@
 require './enigma'
+# require './encode'
 
 enigma = Enigma.new
 
 phrase = File.open(ARGV[0], 'r')
 
-enigma.encrypt(phrase.read)
+this = enigma.encrypt(phrase.read)
 
 phrase.close
 
@@ -14,4 +15,4 @@ writer.write(enigma.encoded_phrase)
 
 writer.close
 
-puts "Created #{ARGV[1]} with the key #{enigma.key} and date #{enigma.date}"
+puts "Created #{ARGV[1]} with the key #{this[:encryption]} and date #{this[:date]}"

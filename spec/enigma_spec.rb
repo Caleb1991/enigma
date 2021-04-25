@@ -6,7 +6,7 @@ RSpec.describe Enigma do
   describe 'initialize' do
     it 'exists' do
       enigma = Enigma.new
-      require 'pry'; binding.pry
+
       expect(enigma).is_a?(Enigma)
     end
   end
