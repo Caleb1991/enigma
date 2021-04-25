@@ -31,12 +31,10 @@ RSpec.describe Key do
       expect(key.range[-1]).to eq(9)
     end
 
-    it 'generates a random number lead by zero' do
+    it 'has a key' do
       key = Key.new('040895')
 
-      # require 'pry'; binding.pry
-
-      expect(key.random_number[0]).to eq('0')
+      expect(key.key[0]).to eq('0')
     end
 
     it 'has an A shift' do

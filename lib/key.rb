@@ -1,6 +1,6 @@
 class Key
   attr_reader :character_set,
-              :random_number,
+              :key,
               :a_shift,
               :b_shift,
               :c_shift,
@@ -13,7 +13,7 @@ class Key
     @date = date
     @character_set = ('a'..'z').to_a << ' '
     @range = (1..9).to_a
-    @random_number = random_number_join
+    @key = random_number_join
     @a_shift = random_number_pairs_sums[0] + date_transformation[0]
     @b_shift = random_number_pairs_sums[1] + date_transformation[1]
     @c_shift = random_number_pairs_sums[2] + date_transformation[2]
