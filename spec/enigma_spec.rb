@@ -150,7 +150,7 @@ RSpec.describe Enigma do
     it 'returns todays date as MMDDYY' do
       enigma = Enigma.new
 
-      expect(enigma.today).to eq('260421')
+      expect(enigma.today).to eq(Time.now.strftime('%d%m%y'))
     end
   end
 end
