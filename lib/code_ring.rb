@@ -83,7 +83,7 @@ class CodeRing
     phrase_array.each_slice(4) do |set|
       new << set
     end
-      new
+    new
   end
 
   def not_nil?(block, index)
