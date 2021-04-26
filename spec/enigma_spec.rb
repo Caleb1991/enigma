@@ -35,6 +35,24 @@ RSpec.describe Enigma do
 
       expect(encryption).to eq(expected)
     end
+
+    it 'returns message if key is too long or too short' do
+      enigma = Enigma.new
+      encryption_1 = enigma.encrypt('hello world', '102715', '040895')
+      encryption_2 = enigma.encrypt('hello world', '15', '040895')
+
+      expect(encryption_1).to eq('Please input five integers')
+      expect(encryption_2).to eq('Please input five integers')
+    end
+
+    it 'returns message if date is too long' do
+      enigma = Enigma.new
+      encryption_1 = enigma.encrypt('hello world', '12345', 'August 7th')
+      encryption_2 = enigma.encrypt('hello world', '12345', '0')
+
+      expect(encryption_1).to eq('Please input date as MMDDYY')
+      expect(encryption_2).to eq('Please input date as MMDDYY')
+    end
   end
 
   describe '#decrypt' do
@@ -49,6 +67,24 @@ RSpec.describe Enigma do
       }
 
       expect(decryption).to eq(expected)
+    end
+
+    it 'returns message if key is too long or too short' do
+      enigma = Enigma.new
+      decryption_1 = enigma.decrypt('hello world', '102715', '040895')
+      decryption_2 = enigma.decrypt('hello world', '15', '040895')
+
+      expect(decryption_1).to eq('Please input five integers')
+      expect(decryption_2).to eq('Please input five integers')
+    end
+
+    it 'returns message if date is too long' do
+      enigma = Enigma.new
+      decryption_1 = enigma.decrypt('hello world', '12345', 'August 7th')
+      decryption_2 = enigma.decrypt('hello world', '12345', '0')
+
+      expect(decryption_1).to eq('Please input date as MMDDYY')
+      expect(decryption_2).to eq('Please input date as MMDDYY')
     end
   end
 
