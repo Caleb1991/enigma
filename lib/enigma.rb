@@ -10,11 +10,27 @@ class Enigma
     @decoded_phrase = nil
   end
 
+  def key_length_not_5?(key)
+    key.length != 5
+  end
+
+  def key_input_error_message
+    'Please input five integers'
+  end
+
+  def date_length_not_six?(date)
+    date.length != 6
+  end
+
+  def date_input_error_message
+    'Please input date as MMDDYY'
+  end
+
   def encrypt(phrase, key = random_key_string, date = today)
-    if key.length != 5
-      'Please input five integers'
-    elsif date.length != 6
-      'Please input date as MMDDYY'
+    if key_length_not_5?(key)
+      key_input_error_message
+    elsif date_length_not_six?(date)
+      date_input_error_message
     else
     encoded = Encoder.new(phrase, key, date)
     @encoded_phrase = encoded.encoded_phrase
@@ -28,10 +44,10 @@ class Enigma
   end
 
   def decrypt(phrase, key, date = today)
-    if key.length != 5
-      'Please input five integers'
-    elsif date.length != 6
-      'Please input date as MMDDYY'
+    if key_length_not_5?(key)
+      key_input_error_message
+    elsif date_length_not_six?(date)
+      date_input_error_message
     else
       decoded = Decoder.new(phrase, key, date)
       @decoded_phrase = decoded.decoded_phrase
