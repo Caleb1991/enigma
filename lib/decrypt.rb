@@ -14,4 +14,4 @@ writer.write(enigma.decoded_phrase)
 
 writer.close
 
-puts "Created #{ARGV[1]} with the key #{decryption[:key]} and date #{decryption[:date]}"
+puts "Created '#{ARGV[1]}' with the key #{decryption[:key]} and date #{decryption[:date]}"
