@@ -1,7 +1,8 @@
 require './code_ring'
 
 class Encoder
-  attr_reader :encoded_phrase
+  attr_reader :encoded_phrase,
+              :code_ring
 
   def initialize(phrase, key, date)
     @code_ring = CodeRing.new(phrase, key, date)
