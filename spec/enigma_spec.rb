@@ -22,6 +22,40 @@ RSpec.describe Enigma do
     end
   end
 
+  describe '#key_length_not_5?' do
+    it'returns true if key value is not 5' do
+      enigma = Enigma.new
+
+      expect(enigma.key_length_not_5?('12345')).to eq(false)
+      expect(enigma.key_length_not_5?('1')).to eq(true)
+    end
+  end
+
+  describe '#key_input_error_message' do
+    it 'returns an error message' do
+      enigma = Enigma.new
+
+      expect(enigma.key_input_error_message).to eq('Please input five integers')
+    end
+  end
+
+  describe '#date_length_not_six?' do
+    it 'returns true if date is not six' do
+      enigma = Enigma.new
+
+      expect(enigma.date_length_not_six?('123456')).to eq(false)
+      expect(enigma.date_length_not_six?('1')).to eq(true)
+    end
+  end
+
+  describe '#date_input_error_message' do
+    it 'returns an error message' do
+      enigma = Enigma.new
+
+      expect(enigma.date_input_error_message).to eq('Please input date as MMDDYY')
+    end
+  end
+
   describe '#encrypt' do
     it 'reutrns hash of encrypted phrase with key and date' do
       enigma = Enigma.new
