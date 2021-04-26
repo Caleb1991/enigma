@@ -1,7 +1,7 @@
 class CodeRing
-  attr_reader :key,
+  attr_reader :phrase,
+              :key,
               :date,
-              :phrase,
               :character_set
 
   def initialize(phrase, key, date)
@@ -46,12 +46,12 @@ class CodeRing
     square_date.to_s
   end
 
-  def string_date_sample
+  def string_date_last_four
     squared_date_to_string[-4..-1].split('')
   end
 
   def date_transformation
-    string_date_sample.map do |string|
+    string_date_last_four.map do |string|
       string.to_i
     end
   end
