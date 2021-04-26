@@ -1,6 +1,8 @@
 class CodeRing
   attr_reader :key,
-              :date
+              :date,
+              :phrase,
+              :character_set
 
   def initialize(phrase, key, date)
     @phrase = phrase.downcase

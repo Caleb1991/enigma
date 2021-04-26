@@ -1,27 +1,23 @@
-require './codering'
+require './code_ring'
 
 class Decoder
-  attr_reader :decoded_phrase,
-              :key,
-              :date,
-              :phrase,
-              :code_ring
+  attr_reader :decoded_phrase
 
   def initialize(phrase, key, date)
     @code_ring = CodeRing.new(phrase, key, date)
-    @phrase = phrase
-    @key = key
-    @date = date
-    @character_set = ('a'..'z').to_a << ' '
     @decoded_phrase = decoded_string
   end
 
+  def code_ring_character_set
+    @code_ring.character_set
+  end
+
   def decode_first_index(block, block_index)
-    @character_set.index(block[block_index])
+    code_ring_character_set.index(block[block_index])
   end
 
   def decode_first_rotation(block, block_index)
-    @character_set.rotate(decode_first_index(block, block_index))
+    code_ring_character_set.rotate(decode_first_index(block, block_index))
   end
 
   def new_character_decode(block, block_index, shift, new_array_index = 0)
