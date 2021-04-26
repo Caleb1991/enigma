@@ -1,10 +1,18 @@
 require './codering'
 
-class Decode < CodeRing
-  attr_reader :decoded_phrase
+class Decoder
+  attr_reader :decoded_phrase,
+              :key,
+              :date,
+              :phrase,
+              :code_ring
 
   def initialize(phrase, key, date)
-    super(phrase, key, date)
+    @code_ring = CodeRing.new(phrase, key, date)
+    @phrase = phrase
+    @key = key
+    @date = date
+    @character_set = ('a'..'z').to_a << ' '
     @decoded_phrase = decoded_string
   end
 
@@ -21,9 +29,9 @@ class Decode < CodeRing
   end
 
   def decode_iteration(block, index, shift)
-    if not_nil_and_included?(block, index)
+    if @code_ring.not_nil_and_included?(block, index)
       new_character_decode(block, index, shift)
-    elsif not_nil_not_included?(block, index)
+    elsif @code_ring.not_nil_not_included?(block, index)
       block[index]
     else
       nil
@@ -33,14 +41,14 @@ class Decode < CodeRing
   def decode
     new = []
 
-    phrase_sets_of_four.map do |array|
-      new << array[0] = decode_iteration(array, 0, a_shift)
+    @code_ring.phrase_sets_of_four.map do |array|
+      new << array[0] = decode_iteration(array, 0, @code_ring.a_shift)
 
-      new << array[1] = decode_iteration(array, 1, b_shift)
+      new << array[1] = decode_iteration(array, 1, @code_ring.b_shift)
 
-      new << array[2] = decode_iteration(array, 2, c_shift)
+      new << array[2] = decode_iteration(array, 2, @code_ring.c_shift)
 
-      new << array[3] = decode_iteration(array, 3, d_shift)
+      new << array[3] = decode_iteration(array, 3, @code_ring.d_shift)
     end
     new
   end

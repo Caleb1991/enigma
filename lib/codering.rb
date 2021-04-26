@@ -77,7 +77,11 @@ class CodeRing
   end
 
   def phrase_sets_of_four
-    phrase_array.each_slice(4)
+    new = []
+    phrase_array.each_slice(4) do |set|
+      new << set
+    end
+      new
   end
 
   def not_nil?(block, index)

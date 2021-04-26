@@ -1,5 +1,5 @@
-require './encode'
-require './decode'
+require './encoder'
+require './decoder'
 
 class Enigma
   attr_reader :encoded_phrase,
@@ -11,8 +11,7 @@ class Enigma
   end
 
   def encrypt(phrase, key = random_key_string, date = today)
-    code_ring = CodeRing.new(phrase, key, date)
-    encoded = Encode.new(phrase, key, date)
+    encoded = Encoder.new(phrase, key, date)
     @encoded_phrase = encoded.encoded_phrase
 
     encrypted = {
@@ -23,8 +22,7 @@ class Enigma
   end
 
   def decrypt(phrase, key, date = today)
-    code_ring = CodeRing.new(phrase, key, date)
-    decoded = Decode.new(phrase, key, date)
+    decoded = Decoder.new(phrase, key, date)
     @decoded_phrase = decoded.decoded_phrase
 
     decryption = {

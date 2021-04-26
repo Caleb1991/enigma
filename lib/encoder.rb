@@ -1,10 +1,18 @@
 require './codering'
 
-class Encode < CodeRing
-  attr_reader :encoded_phrase
+class Encoder
+  attr_reader :encoded_phrase,
+              :key,
+              :date,
+              :phrase,
+              :code_ring
 
   def initialize(phrase, key, date)
-    super(phrase, key, date)
+    @code_ring = CodeRing.new(phrase, key, date)
+    @phrase = phrase
+    @key = key
+    @date = date
+    @character_set = ('a'..'z').to_a << ' '
     @encoded_phrase = encoded_string
   end
 
@@ -21,9 +29,9 @@ class Encode < CodeRing
   end
 
   def encode_iteration(block, index, shift)
-    block[index] = if not_nil_and_included?(block, index)
+    block[index] = if @code_ring.not_nil_and_included?(block, index)
       new_character_encode(block, index, shift)
-    elsif not_nil_not_included?(block, index)
+    elsif @code_ring.not_nil_not_included?(block, index)
       block[index]
     else
       nil
@@ -32,15 +40,15 @@ class Encode < CodeRing
 
   def encode
     new = []
-    phrase_sets_of_four.map do |array|
+    @code_ring.phrase_sets_of_four.map do |array|
 
-      new << array[0] = encode_iteration(array, 0, a_shift)
+      new << array[0] = encode_iteration(array, 0, @code_ring.a_shift)
 
-      new << array[1] = encode_iteration(array, 1, b_shift)
+      new << array[1] = encode_iteration(array, 1, @code_ring.b_shift)
 
-      new << array[2] = encode_iteration(array, 2, c_shift)
+      new << array[2] = encode_iteration(array, 2, @code_ring.c_shift)
 
-      new << array[3] = encode_iteration(array, 3, d_shift)
+      new << array[3] = encode_iteration(array, 3, @code_ring.d_shift)
     end
     new
   end
