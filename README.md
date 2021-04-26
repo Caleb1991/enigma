@@ -12,4 +12,4 @@ While the use of enumerables is properly implemented, it feels as though there c
 TDD - 2.5
 In creation of this project, everything was included in one file. At the point of functionality I then broke the class apart. While TDD was followed during the initial class build, it was strayed from when breaking the class up. Argumemnts could be made that all methods were already tested, but I draw issue with the fact the spec files for the broken up classes came after the classes themselves.
 
-Overall - 2.68
+Overall Score - 2.68
