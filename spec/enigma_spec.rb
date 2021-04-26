@@ -1,5 +1,4 @@
 require './lib/enigma'
-require 'SimpleCOV'
 
 RSpec.describe Enigma do
 
